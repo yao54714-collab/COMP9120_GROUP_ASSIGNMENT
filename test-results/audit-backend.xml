@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="26" time="36.013" timestamp="2026-10-13T23:48:34.921229+11:00" hostname="Yao"><testcase classname="tests.test_audit" name="test_audit_unauthenticated_access_is_denied" time="0.655" /><testcase classname="tests.test_audit" name="test_audit_role_write_permissions" time="1.477" /><testcase classname="tests.test_audit" name="test_audit_cat_two_services_payment_cancel_and_concurrent_refund" time="1.701" /><testcase classname="tests.test_audit" name="test_audit_money_precision_and_negative_values_rejected" time="1.422" /><testcase classname="tests.test_audit" name="test_audit_sql_and_html_input_remain_literal_data" time="0.876" /><testcase classname="tests.test_audit" name="test_audit_employee_password_change_revokes_old_session" time="1.678" /><testcase classname="tests.test_audit" name="test_audit_concurrent_inventory_cannot_go_negative" time="1.050" /><testcase classname="tests.test_audit" name="test_audit_invalid_shift_date_is_validation_error" time="0.845"><failure message="AssertionError: Expected validation error, received 503: {&quot;detail&quot;:&quot;数据库暂时不可用，请检查本地数据库状态。&quot;}&#10;assert 503 == 422&#10; +  where 503 = &lt;Response [503 Service Unavailable]&gt;.status_code">clients = {'customer': &lt;starlette.testclient.TestClient object at 0x00000249DBCE1730&gt;, 'frontdesk': &lt;starlette.testclient.TestCl...stClient object at 0x00000249DB92A8A0&gt;, 'groomer': &lt;starlette.testclient.TestClient object at 0x00000249DBCE3F20&gt;, ...}
+
+    def test_audit_invalid_shift_date_is_validation_error(clients):
+        response=clients['manager'].get('/api/shifts?start=not-a-date&amp;end=2026-10-14')
+&gt;       assert response.status_code==422,f'Expected validation error, received {response.status_code}: {response.text}'
+E       AssertionError: Expected validation error, received 503: {"detail":"数据库暂时不可用，请检查本地数据库状态。"}
+E       assert 503 == 422
+E        +  where 503 = &lt;Response [503 Service Unavailable]&gt;.status_code
+
+tests\test_audit.py:96: AssertionError</failure></testcase><testcase classname="tests.test_audit" name="test_audit_cannot_remove_groomer_role_with_assigned_tasks" time="1.082"><failure message="AssertionError: Role change returned 200; assigned employee start returned 403&#10;assert 200 == 409&#10; +  where 200 = &lt;Response [200 OK]&gt;.status_code">clients = {'customer': &lt;starlette.testclient.TestClient object at 0x00000249DBCC5880&gt;, 'frontdesk': &lt;starlette.testclient.TestCl...stClient object at 0x00000249DBCFDC40&gt;, 'groomer': &lt;starlette.testclient.TestClient object at 0x00000249DBCFD940&gt;, ...}
+
+    def test_audit_cannot_remove_groomer_role_with_assigned_tasks(clients):
+        employee=next(e for e in clients['manager'].get('/api/bootstrap').json()['employees'] if e['employee_id']==3)
+        body={k:employee[k] for k in ['employee_code','display_name','staff_role','email','is_active']}
+        try:
+            result=clients['manager'].put('/api/employees/3',json={**body,'staff_role':'receptionist'})
+            subsequent=clients['groomer'].post('/api/items/9/start') if result.status_code==200 else None
+&gt;           assert result.status_code==409,f'Role change returned {result.status_code}; assigned employee start returned {subsequent.status_code if subsequent is not None else None}'
+E           AssertionError: Role change returned 200; assigned employee start returned 403
+E           assert 200 == 409
+E            +  where 200 = &lt;Response [200 OK]&gt;.status_code
+
+tests\test_audit.py:104: AssertionError</failure></testcase><testcase classname="tests.test_audit" name="test_audit_receptionist_not_offered_for_grooming" time="1.159"><failure message="AssertionError: Receptionist appears as an available groomer but cannot start/complete care.&#10;assert False&#10; +  where False = all(&lt;generator object test_audit_receptionist_not_offered_for_grooming.&lt;locals&gt;.&lt;genexpr&gt; at 0x00000249DB936C20&gt;)">clients = {'customer': &lt;starlette.testclient.TestClient object at 0x00000249DBCFDBE0&gt;, 'frontdesk': &lt;starlette.testclient.TestCl...stClient object at 0x00000249DB962DE0&gt;, 'groomer': &lt;starlette.testclient.TestClient object at 0x00000249DB960590&gt;, ...}
+
+    def test_audit_receptionist_not_offered_for_grooming(clients):
+        assert clients['manager'].put('/api/employees/2/skills',json={'service_ids':[3]}).status_code==200
+        day=datetime.now(SYDNEY).date()+timedelta(days=32)
+        shift=clients['manager'].post('/api/shifts',json={'employee_id':2,'starts_at':day.isoformat()+'T09:00','ends_at':day.isoformat()+'T18:00'})
+        assert shift.status_code==200,shift.text
+        try:
+            r=clients['frontdesk'].get('/api/availability',params={'service_id':3,'pet_id':2,'starts_at':day.isoformat()+'T10:00','duration':60})
+            assert r.status_code==200,r.text
+&gt;           assert all(x['employee_id']!=2 for x in r.json()),'Receptionist appears as an available groomer but cannot start/complete care.'
+E           AssertionError: Receptionist appears as an available groomer but cannot start/complete care.
+E           assert False
+E            +  where False = all(&lt;generator object test_audit_receptionist_not_offered_for_grooming.&lt;locals&gt;.&lt;genexpr&gt; at 0x00000249DB936C20&gt;)
+
+tests\test_audit.py:116: AssertionError</failure></testcase><testcase classname="tests.test_workflows" name="test_health_and_scope" time="1.166" /><testcase classname="tests.test_workflows" name="test_cross_customer_booking_and_read_rejected" time="1.218" /><testcase classname="tests.test_workflows" name="test_species_and_duplicate_items" time="1.083" /><testcase classname="tests.test_workflows" name="test_multi_pet_multi_service_atomic_confirmation" time="1.323" /><testcase classname="tests.test_workflows" name="test_qualification_shift_and_station_validation" time="1.291" /><testcase classname="tests.test_workflows" name="test_concurrent_reservations_one_wins" time="1.484" /><testcase classname="tests.test_workflows" name="test_end_to_end_and_price_snapshot" time="2.781" /><testcase classname="tests.test_workflows" name="test_completion_stock_failure_rolls_back_all_steps" time="1.755" /><testcase classname="tests.test_workflows" name="test_partial_payment_cancel_and_refund_caps" time="1.894" /><testcase classname="tests.test_workflows" name="test_concurrent_payments_cannot_overcollect" time="1.595" /><testcase classname="tests.test_workflows" name="test_inventory_negative_and_immutable_ledger" time="0.864" /><testcase classname="tests.test_workflows" name="test_catalog_and_employee_lifecycle" time="1.354" /><testcase classname="tests.test_workflows" name="test_registration_login_logout_and_origin" time="1.083" /><testcase classname="tests.test_workflows" name="test_report_aggregates_match_source" time="1.044" /><testcase classname="tests.test_workflows" name="test_partial_completion_is_not_a_completed_appointment" time="1.558" /><testcase classname="tests.test_workflows" name="test_database_protects_history_identity_and_account_roles" time="2.141" /></testsuite></testsuites>

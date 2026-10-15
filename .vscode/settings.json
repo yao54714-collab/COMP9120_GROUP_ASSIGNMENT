@@ -1,0 +1,16 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+  "terminal.integrated.env.windows": {
+    "PSModulePath": null
+  },
+  "files.exclude": {
+    "**/__pycache__": true,
+    ".runtime": true,
+    ".pytest_cache": true
+  },
+  "search.exclude": {
+    ".runtime": true,
+    ".venv": true,
+    "frontend/node_modules": true
+  }
+}

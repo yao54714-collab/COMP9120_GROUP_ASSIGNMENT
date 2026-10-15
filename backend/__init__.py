@@ -1,0 +1,1 @@
+"""PawCare local PostgreSQL application."""

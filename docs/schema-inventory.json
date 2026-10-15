@@ -1,0 +1,2079 @@
+{
+  "generated_at": "2026-10-15T00:57:55.120274+00:00",
+  "database": "pawcare",
+  "schema": "pawcare",
+  "schema_version": 4,
+  "table_count": 20,
+  "view_count": 3,
+  "relations": [
+    {
+      "table_name": "appointment",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "appointment_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "booking_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 30,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "customer_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "created_by_account_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "requested_start_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "customer_note",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "appointment_booking_code_key",
+          "kind": "u",
+          "definition": "UNIQUE (booking_code)"
+        },
+        {
+          "name": "appointment_created_by_account_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (created_by_account_id) REFERENCES user_account(account_id)"
+        },
+        {
+          "name": "appointment_customer_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (customer_id) REFERENCES customer(customer_id)"
+        },
+        {
+          "name": "appointment_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (appointment_id)"
+        }
+      ],
+      "row_count": 15
+    },
+    {
+      "table_name": "appointment_financials",
+      "table_type": "VIEW",
+      "columns": [
+        {
+          "column_name": "appointment_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "booking_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": 30,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "charge_total",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 14,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "paid_total",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 14,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "refunded_total",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 14,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "net_paid",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "amount_due",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "refund_due",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [],
+      "row_count": 15
+    },
+    {
+      "table_name": "appointment_item",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "appointment_item_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "appointment_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "item_no",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "pet_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "service_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "employee_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "workstation_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "planned_start_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "planned_end_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "agreed_price",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 10,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "state",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": "'requested'::character varying",
+          "character_maximum_length": 20,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "appointment_item_agreed_price_check",
+          "kind": "c",
+          "definition": "CHECK ((agreed_price >= (0)::numeric))"
+        },
+        {
+          "name": "appointment_item_appointment_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (appointment_id) REFERENCES appointment(appointment_id)"
+        },
+        {
+          "name": "appointment_item_appointment_id_item_no_key",
+          "kind": "u",
+          "definition": "UNIQUE (appointment_id, item_no)"
+        },
+        {
+          "name": "appointment_item_check",
+          "kind": "c",
+          "definition": "CHECK ((((employee_id IS NULL) AND (workstation_id IS NULL) AND (planned_start_at IS NULL) AND (planned_end_at IS NULL)) OR ((employee_id IS NOT NULL) AND (workstation_id IS NOT NULL) AND (planned_start_at IS NOT NULL) AND (planned_end_at IS NOT NULL))))"
+        },
+        {
+          "name": "appointment_item_check1",
+          "kind": "c",
+          "definition": "CHECK ((((state)::text = ANY ((ARRAY['requested'::character varying, 'cancelled'::character varying])::text[])) OR ((employee_id IS NOT NULL) AND (agreed_price IS NOT NULL))))"
+        },
+        {
+          "name": "appointment_item_check2",
+          "kind": "c",
+          "definition": "CHECK ((planned_end_at > planned_start_at))"
+        },
+        {
+          "name": "appointment_item_employee_id_service_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (employee_id, service_id) REFERENCES employee_service(employee_id, service_id)"
+        },
+        {
+          "name": "appointment_item_item_no_check",
+          "kind": "c",
+          "definition": "CHECK ((item_no > 0))"
+        },
+        {
+          "name": "appointment_item_pet_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (pet_id) REFERENCES pet(pet_id)"
+        },
+        {
+          "name": "appointment_item_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (appointment_item_id)"
+        },
+        {
+          "name": "appointment_item_service_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (service_id) REFERENCES service(service_id)"
+        },
+        {
+          "name": "appointment_item_state_check",
+          "kind": "c",
+          "definition": "CHECK (((state)::text = ANY ((ARRAY['requested'::character varying, 'scheduled'::character varying, 'in_progress'::character varying, 'completed'::character varying, 'cancelled'::character varying, 'no_show'::character varying])::text[])))"
+        },
+        {
+          "name": "appointment_item_workstation_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (workstation_id) REFERENCES workstation(workstation_id)"
+        },
+        {
+          "name": "item_record_consistency",
+          "kind": "t",
+          "definition": "TRIGGER DEFERRABLE INITIALLY DEFERRED"
+        },
+        {
+          "name": "no_employee_overlap",
+          "kind": "x",
+          "definition": "EXCLUDE USING gist (employee_id WITH =, tstzrange(planned_start_at, planned_end_at, '[)'::text) WITH &&) WHERE (((state)::text = ANY ((ARRAY['scheduled'::character varying, 'in_progress'::character varying])::text[])))"
+        },
+        {
+          "name": "no_pet_overlap",
+          "kind": "x",
+          "definition": "EXCLUDE USING gist (pet_id WITH =, tstzrange(planned_start_at, planned_end_at, '[)'::text) WITH &&) WHERE (((state)::text = ANY ((ARRAY['scheduled'::character varying, 'in_progress'::character varying])::text[])))"
+        },
+        {
+          "name": "no_station_overlap",
+          "kind": "x",
+          "definition": "EXCLUDE USING gist (workstation_id WITH =, tstzrange(planned_start_at, planned_end_at, '[)'::text) WITH &&) WHERE (((state)::text = ANY ((ARRAY['scheduled'::character varying, 'in_progress'::character varying])::text[])))"
+        }
+      ],
+      "row_count": 15
+    },
+    {
+      "table_name": "appointment_overview",
+      "table_type": "VIEW",
+      "columns": [
+        {
+          "column_name": "appointment_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "booking_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": 30,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "customer_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "requested_start_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "item_count",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "overall_state",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [],
+      "row_count": 15
+    },
+    {
+      "table_name": "auth_session",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "token_hash",
+          "data_type": "character",
+          "udt_name": "bpchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 64,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "account_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "expires_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "auth_session_account_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (account_id) REFERENCES user_account(account_id)"
+        },
+        {
+          "name": "auth_session_check",
+          "kind": "c",
+          "definition": "CHECK ((expires_at > created_at))"
+        },
+        {
+          "name": "auth_session_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (token_hash)"
+        }
+      ],
+      "row_count": 0
+    },
+    {
+      "table_name": "consumable",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "consumable_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "sku",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 40,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "consumable_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "base_unit",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 10,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "reorder_level",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "column_default": "0",
+          "character_maximum_length": null,
+          "numeric_precision": 12,
+          "numeric_scale": 3
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "consumable_base_unit_check",
+          "kind": "c",
+          "definition": "CHECK (((base_unit)::text = ANY ((ARRAY['ml'::character varying, 'g'::character varying, 'unit'::character varying])::text[])))"
+        },
+        {
+          "name": "consumable_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (consumable_id)"
+        },
+        {
+          "name": "consumable_reorder_level_check",
+          "kind": "c",
+          "definition": "CHECK ((reorder_level >= (0)::numeric))"
+        },
+        {
+          "name": "consumable_sku_key",
+          "kind": "u",
+          "definition": "UNIQUE (sku)"
+        }
+      ],
+      "row_count": 3
+    },
+    {
+      "table_name": "customer",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "customer_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "display_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "phone",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 32,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "customer_display_name_check",
+          "kind": "c",
+          "definition": "CHECK ((length(btrim((display_name)::text)) > 0))"
+        },
+        {
+          "name": "customer_phone_check",
+          "kind": "c",
+          "definition": "CHECK ((length(btrim((phone)::text)) > 0))"
+        },
+        {
+          "name": "customer_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (customer_id)"
+        }
+      ],
+      "row_count": 5
+    },
+    {
+      "table_name": "customer_account",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "customer_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "account_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        }
+      ],
+      "constraints": [
+        {
+          "name": "customer_account_account_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (account_id) REFERENCES user_account(account_id)"
+        },
+        {
+          "name": "customer_account_account_id_key",
+          "kind": "u",
+          "definition": "UNIQUE (account_id)"
+        },
+        {
+          "name": "customer_account_customer_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (customer_id) REFERENCES customer(customer_id)"
+        },
+        {
+          "name": "customer_account_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (customer_id)"
+        }
+      ],
+      "row_count": 2
+    },
+    {
+      "table_name": "employee",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "employee_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "account_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "employee_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 30,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "display_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "staff_role",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 20,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "employee_account_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (account_id) REFERENCES user_account(account_id)"
+        },
+        {
+          "name": "employee_account_id_key",
+          "kind": "u",
+          "definition": "UNIQUE (account_id)"
+        },
+        {
+          "name": "employee_employee_code_key",
+          "kind": "u",
+          "definition": "UNIQUE (employee_code)"
+        },
+        {
+          "name": "employee_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (employee_id)"
+        },
+        {
+          "name": "employee_staff_role_check",
+          "kind": "c",
+          "definition": "CHECK (((staff_role)::text = ANY ((ARRAY['manager'::character varying, 'receptionist'::character varying, 'groomer'::character varying])::text[])))"
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "table_name": "employee_service",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "employee_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "service_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "authorised_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "employee_service_employee_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (employee_id) REFERENCES employee(employee_id)"
+        },
+        {
+          "name": "employee_service_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (employee_id, service_id)"
+        },
+        {
+          "name": "employee_service_service_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (service_id) REFERENCES service(service_id)"
+        }
+      ],
+      "row_count": 8
+    },
+    {
+      "table_name": "employee_shift",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "shift_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "employee_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "starts_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "ends_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "employee_shift_check",
+          "kind": "c",
+          "definition": "CHECK ((ends_at > starts_at))"
+        },
+        {
+          "name": "employee_shift_employee_id_ends_at_key",
+          "kind": "u",
+          "definition": "UNIQUE (employee_id, ends_at)"
+        },
+        {
+          "name": "employee_shift_employee_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (employee_id) REFERENCES employee(employee_id)"
+        },
+        {
+          "name": "employee_shift_employee_id_starts_at_key",
+          "kind": "u",
+          "definition": "UNIQUE (employee_id, starts_at)"
+        },
+        {
+          "name": "employee_shift_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (shift_id)"
+        },
+        {
+          "name": "no_shift_overlap",
+          "kind": "x",
+          "definition": "EXCLUDE USING gist (employee_id WITH =, tstzrange(starts_at, ends_at, '[)'::text) WITH &&)"
+        }
+      ],
+      "row_count": 120
+    },
+    {
+      "table_name": "inventory_balance",
+      "table_type": "VIEW",
+      "columns": [
+        {
+          "column_name": "consumable_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "sku",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": 40,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "consumable_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "base_unit",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": 10,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "reorder_level",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 12,
+          "numeric_scale": 3
+        },
+        {
+          "column_name": "quantity_on_hand",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 14,
+          "numeric_scale": 3
+        }
+      ],
+      "constraints": [],
+      "row_count": 3
+    },
+    {
+      "table_name": "inventory_movement",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "movement_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "consumable_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "movement_kind",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 12,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "quantity_delta",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 12,
+          "numeric_scale": 3
+        },
+        {
+          "column_name": "recorded_by_employee_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "reason",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "request_key",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 80,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "recorded_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "inventory_movement_check",
+          "kind": "c",
+          "definition": "CHECK (((((movement_kind)::text = 'receipt'::text) AND (quantity_delta > (0)::numeric)) OR (((movement_kind)::text = ANY ((ARRAY['use'::character varying, 'waste'::character varying])::text[])) AND (quantity_delta < (0)::numeric)) OR ((movement_kind)::text = 'adjustment'::text)))"
+        },
+        {
+          "name": "inventory_movement_consumable_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (consumable_id) REFERENCES consumable(consumable_id)"
+        },
+        {
+          "name": "inventory_movement_movement_kind_check",
+          "kind": "c",
+          "definition": "CHECK (((movement_kind)::text = ANY ((ARRAY['receipt'::character varying, 'use'::character varying, 'waste'::character varying, 'adjustment'::character varying])::text[])))"
+        },
+        {
+          "name": "inventory_movement_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (movement_id)"
+        },
+        {
+          "name": "inventory_movement_quantity_delta_check",
+          "kind": "c",
+          "definition": "CHECK ((quantity_delta <> (0)::numeric))"
+        },
+        {
+          "name": "inventory_movement_reason_check",
+          "kind": "c",
+          "definition": "CHECK ((length(btrim(reason)) > 0))"
+        },
+        {
+          "name": "inventory_movement_recorded_by_employee_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (recorded_by_employee_id) REFERENCES employee(employee_id)"
+        },
+        {
+          "name": "inventory_movement_request_key_key",
+          "kind": "u",
+          "definition": "UNIQUE (request_key)"
+        },
+        {
+          "name": "movement_source_guard",
+          "kind": "t",
+          "definition": "TRIGGER DEFERRABLE INITIALLY DEFERRED"
+        }
+      ],
+      "row_count": 11
+    },
+    {
+      "table_name": "payment",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "payment_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "appointment_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "receipt_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 40,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "amount",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 10,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "method",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 12,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "received_by_employee_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "request_key",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 80,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "received_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "payment_amount_check",
+          "kind": "c",
+          "definition": "CHECK ((amount > (0)::numeric))"
+        },
+        {
+          "name": "payment_appointment_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (appointment_id) REFERENCES appointment(appointment_id)"
+        },
+        {
+          "name": "payment_method_check",
+          "kind": "c",
+          "definition": "CHECK (((method)::text = ANY ((ARRAY['cash'::character varying, 'card'::character varying, 'transfer'::character varying])::text[])))"
+        },
+        {
+          "name": "payment_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (payment_id)"
+        },
+        {
+          "name": "payment_receipt_code_key",
+          "kind": "u",
+          "definition": "UNIQUE (receipt_code)"
+        },
+        {
+          "name": "payment_received_by_employee_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (received_by_employee_id) REFERENCES employee(employee_id)"
+        },
+        {
+          "name": "payment_request_key_key",
+          "kind": "u",
+          "definition": "UNIQUE (request_key)"
+        }
+      ],
+      "row_count": 8
+    },
+    {
+      "table_name": "pet",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "pet_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "customer_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "pet_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 80,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "species",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 8,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "breed",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "birth_date",
+          "data_type": "date",
+          "udt_name": "date",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "sex",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": "'unknown'::character varying",
+          "character_maximum_length": 8,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "latest_weight_kg",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 6,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "care_notes",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "pet_customer_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (customer_id) REFERENCES customer(customer_id)"
+        },
+        {
+          "name": "pet_latest_weight_kg_check",
+          "kind": "c",
+          "definition": "CHECK ((latest_weight_kg > (0)::numeric))"
+        },
+        {
+          "name": "pet_pet_name_check",
+          "kind": "c",
+          "definition": "CHECK ((length(btrim((pet_name)::text)) > 0))"
+        },
+        {
+          "name": "pet_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (pet_id)"
+        },
+        {
+          "name": "pet_sex_check",
+          "kind": "c",
+          "definition": "CHECK (((sex)::text = ANY ((ARRAY['female'::character varying, 'male'::character varying, 'unknown'::character varying])::text[])))"
+        },
+        {
+          "name": "pet_species_check",
+          "kind": "c",
+          "definition": "CHECK (((species)::text = ANY ((ARRAY['dog'::character varying, 'cat'::character varying])::text[])))"
+        }
+      ],
+      "row_count": 6
+    },
+    {
+      "table_name": "refund",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "refund_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "payment_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "refund_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 40,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "amount",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 10,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "reason",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "processed_by_employee_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "request_key",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 80,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "refunded_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "refund_amount_check",
+          "kind": "c",
+          "definition": "CHECK ((amount > (0)::numeric))"
+        },
+        {
+          "name": "refund_payment_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (payment_id) REFERENCES payment(payment_id)"
+        },
+        {
+          "name": "refund_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (refund_id)"
+        },
+        {
+          "name": "refund_processed_by_employee_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (processed_by_employee_id) REFERENCES employee(employee_id)"
+        },
+        {
+          "name": "refund_reason_check",
+          "kind": "c",
+          "definition": "CHECK ((length(btrim(reason)) > 0))"
+        },
+        {
+          "name": "refund_refund_code_key",
+          "kind": "u",
+          "definition": "UNIQUE (refund_code)"
+        },
+        {
+          "name": "refund_request_key_key",
+          "kind": "u",
+          "definition": "UNIQUE (request_key)"
+        }
+      ],
+      "row_count": 0
+    },
+    {
+      "table_name": "schema_version",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "version",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "installed_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "schema_version_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (version)"
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "table_name": "service",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "service_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "service_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 30,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "service_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "species",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 8,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "workstation_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 10,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "base_price",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 10,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "default_duration_minutes",
+          "data_type": "integer",
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "service_base_price_check",
+          "kind": "c",
+          "definition": "CHECK ((base_price >= (0)::numeric))"
+        },
+        {
+          "name": "service_default_duration_minutes_check",
+          "kind": "c",
+          "definition": "CHECK ((default_duration_minutes > 0))"
+        },
+        {
+          "name": "service_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (service_id)"
+        },
+        {
+          "name": "service_service_code_key",
+          "kind": "u",
+          "definition": "UNIQUE (service_code)"
+        },
+        {
+          "name": "service_species_check",
+          "kind": "c",
+          "definition": "CHECK (((species)::text = ANY ((ARRAY['dog'::character varying, 'cat'::character varying])::text[])))"
+        },
+        {
+          "name": "service_workstation_type_check",
+          "kind": "c",
+          "definition": "CHECK (((workstation_type)::text = ANY ((ARRAY['wash'::character varying, 'groom'::character varying])::text[])))"
+        }
+      ],
+      "row_count": 4
+    },
+    {
+      "table_name": "service_consumable",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "service_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "consumable_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "expected_quantity",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 12,
+          "numeric_scale": 3
+        }
+      ],
+      "constraints": [
+        {
+          "name": "service_consumable_consumable_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (consumable_id) REFERENCES consumable(consumable_id)"
+        },
+        {
+          "name": "service_consumable_expected_quantity_check",
+          "kind": "c",
+          "definition": "CHECK ((expected_quantity > (0)::numeric))"
+        },
+        {
+          "name": "service_consumable_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (service_id, consumable_id)"
+        },
+        {
+          "name": "service_consumable_service_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (service_id) REFERENCES service(service_id)"
+        }
+      ],
+      "row_count": 5
+    },
+    {
+      "table_name": "service_consumption",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "movement_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "service_record_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        }
+      ],
+      "constraints": [
+        {
+          "name": "consumption_source_guard",
+          "kind": "t",
+          "definition": "TRIGGER DEFERRABLE INITIALLY DEFERRED"
+        },
+        {
+          "name": "service_consumption_movement_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (movement_id) REFERENCES inventory_movement(movement_id)"
+        },
+        {
+          "name": "service_consumption_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (movement_id)"
+        },
+        {
+          "name": "service_consumption_service_record_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (service_record_id) REFERENCES service_record(appointment_item_id)"
+        }
+      ],
+      "row_count": 8
+    },
+    {
+      "table_name": "service_record",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "appointment_item_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "actual_start_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "actual_end_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "weight_at_visit_kg",
+          "data_type": "numeric",
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 6,
+          "numeric_scale": 2
+        },
+        {
+          "column_name": "care_notes",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "result_notes",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "record_item_consistency",
+          "kind": "t",
+          "definition": "TRIGGER DEFERRABLE INITIALLY DEFERRED"
+        },
+        {
+          "name": "service_record_appointment_item_id_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (appointment_item_id) REFERENCES appointment_item(appointment_item_id)"
+        },
+        {
+          "name": "service_record_check",
+          "kind": "c",
+          "definition": "CHECK ((actual_end_at >= actual_start_at))"
+        },
+        {
+          "name": "service_record_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (appointment_item_id)"
+        },
+        {
+          "name": "service_record_weight_at_visit_kg_check",
+          "kind": "c",
+          "definition": "CHECK ((weight_at_visit_kg > (0)::numeric))"
+        }
+      ],
+      "row_count": 9
+    },
+    {
+      "table_name": "user_account",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "account_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "email",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 254,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "password_hash",
+          "data_type": "text",
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "created_at",
+          "data_type": "timestamp with time zone",
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "column_default": "CURRENT_TIMESTAMP",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "user_account_email_check",
+          "kind": "c",
+          "definition": "CHECK ((((email)::text = lower(btrim((email)::text))) AND (length((email)::text) > 0)))"
+        },
+        {
+          "name": "user_account_email_key",
+          "kind": "u",
+          "definition": "UNIQUE (email)"
+        },
+        {
+          "name": "user_account_password_hash_check",
+          "kind": "c",
+          "definition": "CHECK ((length(password_hash) > 0))"
+        },
+        {
+          "name": "user_account_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (account_id)"
+        }
+      ],
+      "row_count": 6
+    },
+    {
+      "table_name": "workstation",
+      "table_type": "BASE TABLE",
+      "columns": [
+        {
+          "column_name": "workstation_id",
+          "data_type": "bigint",
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0
+        },
+        {
+          "column_name": "station_code",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 30,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "station_name",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "workstation_type",
+          "data_type": "character varying",
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "column_default": null,
+          "character_maximum_length": 10,
+          "numeric_precision": null,
+          "numeric_scale": null
+        },
+        {
+          "column_name": "is_active",
+          "data_type": "boolean",
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "column_default": "true",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null
+        }
+      ],
+      "constraints": [
+        {
+          "name": "workstation_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (workstation_id)"
+        },
+        {
+          "name": "workstation_station_code_key",
+          "kind": "u",
+          "definition": "UNIQUE (station_code)"
+        },
+        {
+          "name": "workstation_workstation_type_check",
+          "kind": "c",
+          "definition": "CHECK (((workstation_type)::text = ANY ((ARRAY['wash'::character varying, 'groom'::character varying])::text[])))"
+        }
+      ],
+      "row_count": 3
+    }
+  ]
+}

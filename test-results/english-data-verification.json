@@ -1,0 +1,33 @@
+{
+  "verified_at_utc": "2026-10-15T00:57:25.546543+00:00",
+  "schema_version": 4,
+  "business_tables_compared": 18,
+  "text_cells_translated": 58,
+  "only_explicit_text_mappings_changed": true,
+  "all_ids_links_amounts_timestamps_statuses_preserved": true,
+  "all_business_table_counts_preserved": true,
+  "existing_chinese_text_remaining": 0,
+  "all_business_triggers_enabled": true,
+  "row_counts": {
+    "appointment": 15,
+    "appointment_item": 15,
+    "consumable": 3,
+    "customer": 5,
+    "customer_account": 2,
+    "employee": 4,
+    "employee_service": 8,
+    "employee_shift": 120,
+    "inventory_movement": 11,
+    "payment": 8,
+    "pet": 6,
+    "refund": 0,
+    "service": 4,
+    "service_consumable": 5,
+    "service_consumption": 8,
+    "service_record": 9,
+    "user_account": 6,
+    "workstation": 3
+  },
+  "future_user_input_unrestricted": true,
+  "pre_migration_private_backup_created": true
+}

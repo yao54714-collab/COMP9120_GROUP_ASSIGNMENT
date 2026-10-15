@@ -1,0 +1,517 @@
+{
+  "config": {
+    "argv": [
+      "D:\\Node\\node.exe",
+      "D:\\Codex Project\\Comp9120\\pawcare\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "D:\\Codex Project\\Comp9120\\pawcare\\frontend\\playwright.config.ts",
+    "rootDir": "D:/Codex Project/Comp9120/pawcare/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/Codex Project/Comp9120/pawcare/test-results/browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/Codex Project/Comp9120/pawcare/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser",
+        "snapshotDir": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:64942",
+          "channel": "chrome",
+          "headless": true,
+          "viewport": {
+            "width": 1440,
+            "height": 1050
+          },
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../test-results/browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "app.spec.ts",
+      "file": "app.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "customer booking → frontdesk allocation → groomer completion → frontdesk receipt",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5282,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:51:58.835Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-af2f289a246d23d8a300",
+          "file": "app.spec.ts",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "title": "all roles and all menu pages load; desktop screenshots and mobile layout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3639,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:52:04.465Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-23a529c6d422b04a25f8",
+          "file": "app.spec.ts",
+          "line": 53,
+          "column": 5
+        },
+        {
+          "title": "manager can record a replenishment and edit a service recipe",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1425,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:52:08.111Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-624b9d16d3d21d3dc489",
+          "file": "app.spec.ts",
+          "line": 72,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "audit.spec.ts",
+      "file": "audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "audit: cat bath and comb → confirmation → care → A$110 receipt",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5479,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:52:09.551Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "45efdff6a4d2e1f7e786-b34ce73f8a58e5c1731e",
+          "file": "audit.spec.ts",
+          "line": 7,
+          "column": 5
+        },
+        {
+          "title": "audit: homepage pet booking must retain the clicked cat",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2213,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('宠物 1')\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"1\"\u001b[39m\nTimeout:  1500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('宠物 1') with timeout 1500ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('宠物 1')\u001b[22m\n\u001b[2m    15 × locator resolved to <select>…</select>\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('宠物 1')\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"1\"\u001b[39m\nTimeout:  1500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('宠物 1') with timeout 1500ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('宠物 1')\u001b[22m\n\u001b[2m    15 × locator resolved to <select>…</select>\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n    at D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts:61:41",
+                    "location": {
+                      "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                      "column": 41,
+                      "line": 61
+                    },
+                    "snippet": "  59 |   await page.locator('.pc-pet-row').filter({hasText:'Luna'}).getByRole('button',{name:'预约',exact:true}).click();\n  60 |   await page.screenshot({path:'../test-results/audit-wrong-pet.png',fullPage:true});\n> 61 |   await expect(page.getByLabel('宠物 1')).toHaveValue('2',{timeout:1500});\n     |                                         ^\n  62 | });\n  63 |\n  64 | test('audit: changing to finance must not preserve a hidden appointment status filter',async({page})=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                        "column": 41,
+                        "line": 61
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByLabel('宠物 1')\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"1\"\u001b[39m\nTimeout:  1500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" getByLabel('宠物 1') with timeout 1500ms\u001b[22m\n\u001b[2m  - waiting for getByLabel('宠物 1')\u001b[22m\n\u001b[2m    15 × locator resolved to <select>…</select>\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  59 |   await page.locator('.pc-pet-row').filter({hasText:'Luna'}).getByRole('button',{name:'预约',exact:true}).click();\n  60 |   await page.screenshot({path:'../test-results/audit-wrong-pet.png',fullPage:true});\n> 61 |   await expect(page.getByLabel('宠物 1')).toHaveValue('2',{timeout:1500});\n     |                                         ^\n  62 | });\n  63 |\n  64 | test('audit: changing to finance must not preserve a hidden appointment status filter',async({page})=>{\n    at D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts:61:41"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:52:15.038Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-homepage-pet-booking-must-retain-the-clicked-cat\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-homepage-pet-booking-must-retain-the-clicked-cat\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-homepage-pet-booking-must-retain-the-clicked-cat\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                    "column": 41,
+                    "line": 61
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "45efdff6a4d2e1f7e786-c67e4909859b36f07267",
+          "file": "audit.spec.ts",
+          "line": 57,
+          "column": 5
+        },
+        {
+          "title": "audit: changing to finance must not preserve a hidden appointment status filter",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2545,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.pc-filters').getByRole('button', { name: '全部', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.pc-filters').getByRole('button', { name: '全部', exact: true }) with timeout 1500ms\u001b[22m\n\u001b[2m  - waiting for locator('.pc-filters').getByRole('button', { name: '全部', exact: true })\u001b[22m\n\u001b[2m    15 × locator resolved to <button aria-pressed=\"false\">全部</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.pc-filters').getByRole('button', { name: '全部', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.pc-filters').getByRole('button', { name: '全部', exact: true }) with timeout 1500ms\u001b[22m\n\u001b[2m  - waiting for locator('.pc-filters').getByRole('button', { name: '全部', exact: true })\u001b[22m\n\u001b[2m    15 × locator resolved to <button aria-pressed=\"false\">全部</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n    at D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts:70:88",
+                    "location": {
+                      "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                      "column": 88,
+                      "line": 70
+                    },
+                    "snippet": "  68 |   await page.getByRole('navigation').getByRole('button',{name:'收款记录',exact:true}).click();\n  69 |   await page.screenshot({path:'../test-results/audit-hidden-filter.png',fullPage:true});\n> 70 |   await expect(page.locator('.pc-filters').getByRole('button',{name:'全部',exact:true})).toHaveAttribute('aria-pressed','true',{timeout:1500});\n     |                                                                                        ^\n  71 | });\n  72 |\n  73 | test('audit: all role pages at mobile width, keyboard dialog and literal HTML text',async({page})=>{"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                        "column": 88,
+                        "line": 70
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.pc-filters').getByRole('button', { name: '全部', exact: true })\nExpected: \u001b[32m\"\u001b[7mtru\u001b[27me\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mfals\u001b[27me\"\u001b[39m\nTimeout:  1500ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.pc-filters').getByRole('button', { name: '全部', exact: true }) with timeout 1500ms\u001b[22m\n\u001b[2m  - waiting for locator('.pc-filters').getByRole('button', { name: '全部', exact: true })\u001b[22m\n\u001b[2m    15 × locator resolved to <button aria-pressed=\"false\">全部</button>\u001b[22m\n\u001b[2m       - unexpected value \"false\"\u001b[22m\n\n\n  68 |   await page.getByRole('navigation').getByRole('button',{name:'收款记录',exact:true}).click();\n  69 |   await page.screenshot({path:'../test-results/audit-hidden-filter.png',fullPage:true});\n> 70 |   await expect(page.locator('.pc-filters').getByRole('button',{name:'全部',exact:true})).toHaveAttribute('aria-pressed','true',{timeout:1500});\n     |                                                                                        ^\n  71 | });\n  72 |\n  73 | test('audit: all role pages at mobile width, keyboard dialog and literal HTML text',async({page})=>{\n    at D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts:70:88"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:52:18.112Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-changing-to-fi-b2e31-n-appointment-status-filter\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-changing-to-fi-b2e31-n-appointment-status-filter\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-changing-to-fi-b2e31-n-appointment-status-filter\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                    "column": 88,
+                    "line": 70
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "45efdff6a4d2e1f7e786-21546646c553523ab7a1",
+          "file": "audit.spec.ts",
+          "line": 64,
+          "column": 5
+        },
+        {
+          "title": "audit: all role pages at mobile width, keyboard dialog and literal HTML text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3674,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:52:21.792Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "45efdff6a4d2e1f7e786-2f34d81c6e422060b5aa",
+          "file": "audit.spec.ts",
+          "line": 73,
+          "column": 5
+        },
+        {
+          "title": "audit: displayed consumables must match submitted IDs after a recipe ingredient is disabled",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1940,
+                  "error": {
+                    "message": "Error: Displayed IDs [3,2]; submitted [1,2]; response 409: {\"detail\":\"不能使用已停用的耗材。\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[32m-   3,\u001b[39m\n\u001b[31m+   1,\u001b[39m\n\u001b[2m    2,\u001b[22m\n\u001b[2m  ]\u001b[22m",
+                    "stack": "Error: Displayed IDs [3,2]; submitted [1,2]; response 409: {\"detail\":\"不能使用已停用的耗材。\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[32m-   3,\u001b[39m\n\u001b[31m+   1,\u001b[39m\n\u001b[2m    2,\u001b[22m\n\u001b[2m  ]\u001b[22m\n    at D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts:117:163",
+                    "location": {
+                      "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                      "column": 163,
+                      "line": 117
+                    },
+                    "snippet": "  115 |   const submitted=response.request().postDataJSON().consumptions.map((c:{consumable_id:number})=>c.consumable_id);\n  116 |   await page.screenshot({path:'../test-results/audit-disabled-consumable.png',fullPage:true});\n> 117 |   expect(submitted,`Displayed IDs ${JSON.stringify(displayed)}; submitted ${JSON.stringify(submitted)}; response ${response.status()}: ${await response.text()}`).toEqual(displayed);\n      |                                                                                                                                                                   ^\n  118 | });\n  119 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                        "column": 163,
+                        "line": 117
+                      },
+                      "message": "Error: Displayed IDs [3,2]; submitted [1,2]; response 409: {\"detail\":\"不能使用已停用的耗材。\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  - 1\u001b[39m\n\u001b[31m+ Received  + 1\u001b[39m\n\n\u001b[2m  Array [\u001b[22m\n\u001b[32m-   3,\u001b[39m\n\u001b[31m+   1,\u001b[39m\n\u001b[2m    2,\u001b[22m\n\u001b[2m  ]\u001b[22m\n\n  115 |   const submitted=response.request().postDataJSON().consumptions.map((c:{consumable_id:number})=>c.consumable_id);\n  116 |   await page.screenshot({path:'../test-results/audit-disabled-consumable.png',fullPage:true});\n> 117 |   expect(submitted,`Displayed IDs ${JSON.stringify(displayed)}; submitted ${JSON.stringify(submitted)}; response ${response.status()}: ${await response.text()}`).toEqual(displayed);\n      |                                                                                                                                                                   ^\n  118 | });\n  119 |\n    at D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts:117:163"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T12:52:25.800Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-displayed-cons-9912e-cipe-ingredient-is-disabled\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-displayed-cons-9912e-cipe-ingredient-is-disabled\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "D:\\Codex Project\\Comp9120\\pawcare\\test-results\\browser-artifacts\\audit-audit-displayed-cons-9912e-cipe-ingredient-is-disabled\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\Codex Project\\Comp9120\\pawcare\\tests\\browser\\audit.spec.ts",
+                    "column": 163,
+                    "line": 117
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "45efdff6a4d2e1f7e786-45b0e89cf48dc4574b68",
+          "file": "audit.spec.ts",
+          "line": 99,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T12:51:58.245Z",
+    "duration": 29917.345,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

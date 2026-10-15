@@ -1,0 +1,30 @@
+{
+  "verified_at": "2026-10-14T12:09:47.642697+00:00",
+  "backend_tests": 32,
+  "browser_tests": 10,
+  "failures": 0,
+  "business_data_unchanged": true,
+  "business_tables_checked": 18,
+  "business_table_rows": {
+    "appointment": 14,
+    "appointment_item": 14,
+    "consumable": 3,
+    "customer": 5,
+    "customer_account": 2,
+    "employee": 4,
+    "employee_service": 8,
+    "employee_shift": 120,
+    "inventory_movement": 11,
+    "payment": 7,
+    "pet": 6,
+    "refund": 0,
+    "service": 4,
+    "service_consumable": 5,
+    "service_consumption": 8,
+    "service_record": 9,
+    "user_account": 6,
+    "workstation": 3
+  },
+  "schema_version": 3,
+  "pgadmin_tables_visible": 20
+}

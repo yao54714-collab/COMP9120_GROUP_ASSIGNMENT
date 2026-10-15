@@ -1,0 +1,18 @@
+{
+  "powershell": "5.1.26100.9444",
+  "security_module_version": "3.0.0.0",
+  "security_module_loaded": true,
+  "virtual_environment_activation": true,
+  "project_python_selected": true,
+  "global_execution_policy_modified": false,
+  "vscode_f5_started_in_fresh_terminal": true,
+  "website_health_status": "ok",
+  "database_schema_version": 4,
+  "application_logic_unchanged": true,
+  "verified_files": {
+    ".vscode/settings.json": "26b7d17a082410abd4cb24e792e278f9100dc64ee599a8be2995f71785ffd1ee",
+    ".vscode/launch.json": "cd5db99c70ce0bf7dc7b33704a3a1878dc868eeb295e8b9792e89b7867255a22",
+    "tools/package_project.py": "96b24c74a884aef25c746eeef302d33e458053ea1558985929693a6dd2f100b3"
+  },
+  "vscode_new_normal_terminal_auto_activation_without_error": true
+}
