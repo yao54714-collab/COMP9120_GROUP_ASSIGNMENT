@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-19T14:29:11.290120+11:00",
+  "scope": "Inactive pet visibility in customer, receptionist and manager lists",
+  "frontend_build": "TypeScript and Vite passed",
+  "browser_tests": {
+    "passed": 18,
+    "failed": 0
+  },
+  "verified": [
+    "Active pets shown by default, including after reload.",
+    "Inactive profiles accessible through View inactive pets with a count.",
+    "Deactivation hides the profile from the active list.",
+    "Care history and old bookings remain accessible.",
+    "Reactivation returns the pet to the active list and booking choices.",
+    "Customer mobile layout has no horizontal overflow."
+  ],
+  "business_tables_unchanged": 18,
+  "backend_or_schema_changed_in_this_update": false,
+  "live_frontend_asset": "index-BOfMw4Qg.js",
+  "evidence_folder": "test-results/inactive-pet-visibility-2026-10-19"
+}

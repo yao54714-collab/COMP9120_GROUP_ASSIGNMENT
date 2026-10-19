@@ -12,5 +12,6 @@
     ".runtime": true,
     ".venv": true,
     "frontend/node_modules": true
-  }
+  },
+  "python.terminal.useEnvFile": true
 }

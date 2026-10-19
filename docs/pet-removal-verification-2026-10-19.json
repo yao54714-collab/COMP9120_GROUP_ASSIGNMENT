@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-19T14:08:15.568450+11:00",
+  "scope": "Pet deletion and deactivation for customers, receptionists and managers",
+  "frontend_build": "passed (TypeScript and Vite)",
+  "backend_tests": {
+    "passed": 57,
+    "failed": 0,
+    "new_pet_removal_cases": 11
+  },
+  "browser_tests": {
+    "passed": 18,
+    "failed": 0,
+    "new_pet_removal_cases": 4
+  },
+  "data_preservation": {
+    "business_tables_checked": 18,
+    "all_row_counts_and_sha256_unchanged": true,
+    "private_backup_created": true
+  },
+  "database_schema_changed": false,
+  "rules": [
+    "Only pets without any booking history may be permanently deleted.",
+    "All booking and care history is retained through deactivation.",
+    "Unfinished bookings must be completed or cancelled before deactivation.",
+    "Customers may only remove their own pets; groomers cannot remove pets.",
+    "Booking creation and removal share a transaction lock.",
+    "Inactive pets cannot be booked; profiles can be reactivated in the editor."
+  ],
+  "evidence_folder": "test-results/pet-removal-2026-10-19",
+  "runtime_note": "Restart the existing run.py process in VS Code, then refresh the website to load the new backend.",
+  "known_test_warning": "Existing Starlette TestClient/httpx deprecation warning; no test failure."
+}

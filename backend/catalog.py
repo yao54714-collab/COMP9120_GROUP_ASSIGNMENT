@@ -12,6 +12,11 @@ router=APIRouter(prefix='/api')
 TABLES={'customers':('customer','customer_id',m.CustomerInput),'pets':('pet','pet_id',m.PetInput),
         'services':('service','service_id',m.ServiceInput),'stations':('workstation','workstation_id',m.StationInput),
         'consumables':('consumable','consumable_id',m.ConsumableInput)}
+PET_QUERY='''SELECT p.*,c.display_name AS owner_name,
+    EXISTS(SELECT 1 FROM appointment_item i WHERE i.pet_id=p.pet_id) AS has_booking_history,
+    EXISTS(SELECT 1 FROM appointment_item i WHERE i.pet_id=p.pet_id
+           AND i.state IN ('requested','scheduled','in_progress')) AS has_unfinished_bookings
+    FROM pet p JOIN customer c USING(customer_id)'''
 
 def write(c,table,key,data,id=None):
     fields=list(data)
@@ -26,14 +31,14 @@ def bootstrap(user=Depends(get_user)):
     with transaction() as c:
         if user['role']=='customer':
             customers=all_rows(c,'SELECT * FROM customer WHERE customer_id=%s',(user['customer_id'],))
-            pets=all_rows(c,'SELECT p.*,c.display_name AS owner_name FROM pet p JOIN customer c USING(customer_id) WHERE p.customer_id=%s ORDER BY pet_id',(user['customer_id'],))
+            pets=all_rows(c,PET_QUERY+' WHERE p.customer_id=%s ORDER BY pet_id',(user['customer_id'],))
         elif user['role']=='groomer':
             customers=[]
-            pets=all_rows(c,'''SELECT p.*,c.display_name AS owner_name FROM pet p JOIN customer c USING(customer_id)
+            pets=all_rows(c,PET_QUERY+'''
               WHERE EXISTS(SELECT 1 FROM appointment_item i WHERE i.pet_id=p.pet_id AND i.employee_id=%s) ORDER BY pet_id''',(user['employee_id'],))
         else:
             customers=all_rows(c,'SELECT * FROM customer ORDER BY customer_id DESC')
-            pets=all_rows(c,'SELECT p.*,c.display_name AS owner_name FROM pet p JOIN customer c USING(customer_id) ORDER BY pet_id DESC')
+            pets=all_rows(c,PET_QUERY+' ORDER BY pet_id DESC')
         staff=user['role']!='customer'
         return {'user':user,'customers':customers,'pets':pets,
             'services':all_rows(c,'SELECT * FROM service'+('' if user['role']=='manager' else ' WHERE is_active')+' ORDER BY service_id'),
@@ -85,6 +90,37 @@ def create(kind:str,body:dict,user=Depends(get_user)):return catalog_write(kind,
 
 @router.put('/catalog/{kind}/{id}')
 def edit(kind:str,id:int,body:dict,user=Depends(get_user)):return catalog_write(kind,id,body,user)
+
+def pet_for_removal(c,id,user):
+    # Use the same lock as booking creation, so a new booking cannot race deletion.
+    schedule_lock(c)
+    pet=found(one(c,'SELECT * FROM pet WHERE pet_id=%s FOR UPDATE',(id,)),'Pet not found.')
+    if user['role']=='customer' and pet['customer_id']!=user['customer_id']:
+        raise HTTPException(404,'Pet not found.')
+    return pet
+
+
+@router.delete('/catalog/pets/{id}')
+def delete_pet(id:int,user=Depends(get_user)):
+    require(user,'manager','receptionist','customer')
+    with transaction() as c:
+        pet_for_removal(c,id,user)
+        check(not one(c,'SELECT 1 FROM appointment_item WHERE pet_id=%s',(id,)),
+              'This pet has booking history and cannot be deleted. Deactivate the profile instead to keep its records.')
+        c.execute('DELETE FROM pet WHERE pet_id=%s',(id,))
+    return {'ok':True}
+
+
+@router.post('/catalog/pets/{id}/deactivate')
+def deactivate_pet(id:int,user=Depends(get_user)):
+    require(user,'manager','receptionist','customer')
+    with transaction() as c:
+        pet_for_removal(c,id,user)
+        check(not one(c,"SELECT 1 FROM appointment_item WHERE pet_id=%s AND state IN ('requested','scheduled','in_progress')",(id,)),
+              'This pet has unfinished bookings. Finish or cancel them before deactivating the profile.')
+        c.execute('UPDATE pet SET is_active=false WHERE pet_id=%s',(id,))
+    return {'ok':True}
+
 
 def employee_write(id,data,user):
     require(user,'manager')

@@ -59,6 +59,8 @@ New customers use **New here? Create a customer account** on the sign-in page. T
 
 **Manager → User accounts** provides search by name/email, role/status filters, activation/deactivation and password resets. Deactivation/reset revokes old sessions; passwords and hashes are never listed. Employee login and scheduling status change together. Staff with unfinished care tasks cannot be deactivated, and managers cannot deactivate themselves. Inactive customer profiles must be restored in **Customers & pets** before login can be enabled. Business history is retained. Other roles cannot administer accounts. See the [account review](docs/account-management-review.md).
 
+**Pet removal:** In **My pets** (customer) or **Customers & pets** (reception/manager), choose **Delete** beside a pet without booking history and confirm. Pets with any booking history show **Deactivate** instead; finish or cancel unfinished bookings first. Pet lists show active pets by default. Choose **View inactive pets** to see saved inactive profiles and their care history; they cannot be selected for new bookings. To restore a profile, edit it and select **Active profile**. Customers can only remove their own pets.
+
 Workflow: customer adds pets and requests services → reception confirms qualified staff, stations, times and prices → groomer starts/completes care and records actual consumables → reception records offline payments → manager handles eligible refunds, inventory and reports. Care completion and stock deductions commit together; insufficient stock rolls everything back. Historical prices are retained.
 
 Amounts use **AUD**, and business dates use **Australia/Sydney**. The scope excludes boarding, retail, loyalty points, real card charging, SMS/email sending and compensation after completed services. For demonstrations, confirmed future tasks may start early; actual start/end timestamps still reflect real operations.
@@ -226,6 +228,8 @@ SELECT * FROM inventory_balance;
 5. 前台按实际收到的钱登记分次收款。重复请求不会生成第二张同样的收款记录。
 6. 未开始服务可取消，已付款部分形成可退余额；店长选择原收款记录登记退款。
 7. 店长查看真实 SQL 汇总的经营报表和低库存，维护人员、资质、班次、服务及工位。
+
+宠物删除：顾客在 **My pets**、前台／店长在 **Customers & pets** 点击宠物旁的 **Delete**，确认后可删除没有预约历史的档案。有预约历史时显示 **Deactivate**，需先完成或取消未结束的预约；宠物列表默认隐藏已停用宠物；点击 **View inactive pets** 可查看档案及护理历史，但不能用于新预约。重新启用可编辑档案并勾选 **Active profile**。顾客只能操作自己的宠物。
 
 金额均为 AUD，时间显示与业务日界均使用 Australia/Sydney。过去护理记录不可覆写。档案使用停用状态，不删除有历史关联的数据。
 
